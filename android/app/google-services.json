@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1091927884473",
+    "project_id": "senior-project-2022-16cdc",
+    "storage_bucket": "senior-project-2022-16cdc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091927884473:android:dbc5bfe1337b4f47701168",
+        "android_client_info": {
+          "package_name": "com.example.uber_copy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091927884473-u6vgq6s5s2co3g2q3ecjb1evrb4lrmuf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_PqnxD0BZRSdKviCslNYBtb5JSMHpQkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091927884473-u6vgq6s5s2co3g2q3ecjb1evrb4lrmuf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1091927884473-em3fvaolhpjb7hpbuksgogkg74412sb0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.uberCopy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
