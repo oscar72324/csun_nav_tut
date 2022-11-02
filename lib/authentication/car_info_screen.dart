@@ -15,7 +15,10 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
       TextEditingController();
   TextEditingController carColorTextEditingController = TextEditingController();
 
-  List<String> carTypesList = ["uber-x", "uber-go", "bike"];
+  List<String> carTypesList = [
+    "Shuttle",
+    "Cart",
+  ];
   String? selectedCarType;
 
   saveCarInfo() {
@@ -126,7 +129,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 height: 20,
               ),
               DropdownButton(
-                dropdownColor: Colors.white24,
+                dropdownColor: Colors.black54,
                 hint: Text(
                   "Please choose car type",
                   style: TextStyle(
@@ -144,7 +147,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   return DropdownMenuItem(
                     child: Text(
                       car,
-                      style: const TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     value: car,
                   );
