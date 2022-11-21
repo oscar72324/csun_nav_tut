@@ -21,8 +21,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
   final Completer<GoogleMapController> _controllerGoogleMap = Completer();
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+  static const CameraPosition _center = CameraPosition(
+    target: LatLng(34.24138, -118.52946),
     zoom: 14.4746,
   );
 
@@ -220,8 +220,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
     // String humanReadableAddress = await AssistantMethods.searchAddressForGeographicCoordinates(userCurrentPosition!, context);
     // print("this is your address = " + humanReadableAddress);
-    await AssistantMethods.searchAddressForGeographicCoordinates(
-        driverCurrentPosition!, context);
+    await AssistantMethods.searchAddressForGeographicCoordinates(driverCurrentPosition!, context);
   }
 
   // @override
@@ -237,7 +236,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
         GoogleMap(
           mapType: MapType.normal,
           myLocationEnabled: true,
-          initialCameraPosition: _kGooglePlex,
+          initialCameraPosition: _center,
           onMapCreated: (GoogleMapController controller) {
             _controllerGoogleMap.complete(controller);
             newGoogleMapController = controller;
@@ -270,17 +269,17 @@ class _HomeTabPageState extends State<HomeTabPage> {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      // driverIsOnlineNow();
+                      driverIsOnlineNow();
                     },
                     style: ElevatedButton.styleFrom(
-                        primary: buttonColor,
+                        backgroundColor: buttonColor,
                         padding: const EdgeInsets.symmetric(horizontal: 18),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(26),
                         )),
                     child: statusText != "Now Online"
                         ? Text(statusText,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -296,23 +295,23 @@ class _HomeTabPageState extends State<HomeTabPage> {
     );
   }
 
-  // driverIsOnlineNow() async {
-  //   Position pos = await Geolocator.getCurrentPosition(
-  //     desiredAccuracy: LocationAccuracy.high,
-  //   );
-  //   driverCurrentPosition = pos;
+  driverIsOnlineNow() async {
+    Position pos = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    driverCurrentPosition = pos;
 
-  //   Geofire.initialize("activeDrivers");
-  //   Geofire.setLocation(currentFirebaseUser!.uid,
-  //       driverCurrentPosition!.latitude, driverCurrentPosition!.latitude);
+    Geofire.initialize("activeDrivers");
+    Geofire.setLocation(currentFirebaseUser!.uid,
+        driverCurrentPosition!.latitude, driverCurrentPosition!.latitude);
 
-  //   DatabaseReference ref = FirebaseDatabase.instance
-  //       .ref()
-  //       .child("drivers")
-  //       .child(currentFirebaseUser!.uid)
-  //       .child("newRideStatus");
+    DatabaseReference ref = FirebaseDatabase.instance
+        .ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .child("newRideStatus");
 
-  //   ref.set("idle");
-  //   ref.onValue.listen((event) {});
-  // }
+    ref.set("idle");
+    ref.onValue.listen((event) {});
+  }
 }
