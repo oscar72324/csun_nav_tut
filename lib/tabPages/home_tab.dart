@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/services.dart';
 import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uber_copy/global/global.dart';
@@ -220,7 +222,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
     // String humanReadableAddress = await AssistantMethods.searchAddressForGeographicCoordinates(userCurrentPosition!, context);
     // print("this is your address = " + humanReadableAddress);
-    await AssistantMethods.searchAddressForGeographicCoordinates(driverCurrentPosition!, context);
+    await AssistantMethods.searchAddressForGeographicCoordinates(
+        driverCurrentPosition!, context);
   }
 
   // @override
@@ -269,7 +272,23 @@ class _HomeTabPageState extends State<HomeTabPage> {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      driverIsOnlineNow();
+                      if (isDriverActive != true) {
+                        driverIsOnlineNow();
+                        updateDriversLocationAtRealTime();
+
+                        setState(() {
+                          statusText = "Now Online";
+                          isDriverActive = true;
+                          buttonColor = Colors.transparent;
+                        });
+                        Fluttertoast.showToast(msg: "you are online now");
+                      } else {
+                        driverIsOfflineNow();
+                        statusText = "Now Offline";
+                        isDriverActive = false;
+                        buttonColor = Colors.grey;
+                      }
+                      Fluttertoast.showToast(msg: "you are offline now");
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: buttonColor,
@@ -313,5 +332,42 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
     ref.set("idle");
     ref.onValue.listen((event) {});
+  }
+
+  updateDriversLocationAtRealTime() {
+    streamSubscriptionPosition =
+        Geolocator.getPositionStream().listen((Position position) {
+      driverCurrentPosition = position;
+
+      if (isDriverActive == true) {
+        Geofire.setLocation(currentFirebaseUser!.uid,
+            driverCurrentPosition!.latitude, driverCurrentPosition!.longitude);
+      }
+
+      LatLng latLng = LatLng(
+        driverCurrentPosition!.latitude,
+        driverCurrentPosition!.longitude,
+      );
+
+      newGoogleMapController!.animateCamera(CameraUpdate.newLatLng(latLng));
+    });
+  }
+
+  driverIsOfflineNow() {
+    Geofire.removeLocation(currentFirebaseUser!.uid);
+
+    DatabaseReference? ref = FirebaseDatabase.instance
+        .ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .child("newRideStatus");
+    ref.onDisconnect();
+    ref.remove();
+    ref = null;
+
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      //SystemChannels.platform.invokeMethod("SystemNavigator.pop");
+      SystemNavigator.pop();
+    });
   }
 }
