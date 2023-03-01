@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uber_copy/tabPages/earning_tab.dart';
 import 'package:uber_copy/tabPages/home_tab.dart';
 import 'package:uber_copy/tabPages/profile_tab.dart';
-import 'package:uber_copy/tabPages/ratings_tab.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -36,17 +34,12 @@ class _MainScreenState extends State<MainScreen>
         controller: tabController,
         children: const [
           HomeTabPage(),
-          EarningsTabPage(),
-          RatingsTabPage(),
           ProfileTabPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.credit_card), label: "Earnings"),
-          BottomNavigationBarItem(icon: Icon(Icons.star), label: "Rating"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
         ],
         unselectedItemColor: Colors.white54,
