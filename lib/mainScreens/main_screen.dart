@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uber_copy/tabPages/emergency_tab.dart';
 import 'package:uber_copy/tabPages/home_tab.dart';
 import 'package:uber_copy/tabPages/profile_tab.dart';
 
@@ -32,15 +33,13 @@ class _MainScreenState extends State<MainScreen>
       body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
         controller: tabController,
-        children: const [
-          HomeTabPage(),
-          ProfileTabPage(),
-        ],
+        children: const [HomeTabPage(), ProfileTabPage(), EmergencytabPage()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
+          BottomNavigationBarItem(icon: Icon(Icons.phone), label: "Emergency")
         ],
         unselectedItemColor: Colors.white54,
         selectedItemColor: Colors.white,

@@ -140,7 +140,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 091bde13e47bb1c5e9fe397634f3593dc390430f
   FirebaseDatabase: 61b99b5477c29115e9d4006c6b44a8815a3cc3c3
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_geofire: 18797208c9042b71a59cb031c42d5670b97aefd1
+  flutter_geofire: bdfbc0c9089638778117d488a9b64b565c277d7a
   fluttertoast: 74526702fea2c060ea55dde75895b7e1bde1c86b
   geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
   GeoFire: f113536c90f581f89107c31ec1efde1a1cae3115
