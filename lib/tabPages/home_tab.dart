@@ -284,6 +284,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
                         Fluttertoast.showToast(msg: "you are online now");
                       } else {
                         driverIsOfflineNow();
+
                         setState(() {
                           statusText = "Now Offline";
                           isDriverActive = false;
@@ -323,8 +324,9 @@ class _HomeTabPageState extends State<HomeTabPage> {
     driverCurrentPosition = pos;
 
     Geofire.initialize("activeDrivers");
+
     Geofire.setLocation(currentFirebaseUser!.uid,
-        driverCurrentPosition!.latitude, driverCurrentPosition!.latitude);
+        driverCurrentPosition!.latitude, driverCurrentPosition!.longitude);
 
     DatabaseReference ref = FirebaseDatabase.instance
         .ref()
