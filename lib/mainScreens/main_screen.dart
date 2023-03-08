@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uber_copy/tabPages/emergency_tab.dart';
 import 'package:uber_copy/tabPages/home_tab.dart';
 import 'package:uber_copy/tabPages/profile_tab.dart';
+import 'package:uber_copy/tabPages/shuttle_tab.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -33,13 +34,20 @@ class _MainScreenState extends State<MainScreen>
       body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
         controller: tabController,
-        children: const [HomeTabPage(), ProfileTabPage(), EmergencytabPage()],
+        children: const [
+          HomeTabPage(),
+          ProfileTabPage(),
+          EmergencytabPage(),
+          ShuttleTabPage()
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
-          BottomNavigationBarItem(icon: Icon(Icons.phone), label: "Emergency")
+          BottomNavigationBarItem(icon: Icon(Icons.phone), label: "Emergency"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.directions_bus), label: "Schedule")
         ],
         unselectedItemColor: Colors.white54,
         selectedItemColor: Colors.white,

@@ -226,11 +226,11 @@ class _HomeTabPageState extends State<HomeTabPage> {
         driverCurrentPosition!, context);
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   checkIfLocationpermissionAllowed();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    checkIfLocationpermissionAllowed();
+  }
 
   @override
   Widget build(BuildContext context) {
