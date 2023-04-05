@@ -36,6 +36,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
   Color buttonColor = Colors.grey;
   bool isDriverActive = false;
 
+  StreamSubscription<Position>? streamSubscriptionPosition;
+
   blackThemeGoogleMap() {
     newGoogleMapController!.setMapStyle('''
                     [
@@ -218,9 +220,12 @@ class _HomeTabPageState extends State<HomeTabPage> {
         driverCurrentPosition!.latitude, driverCurrentPosition!.longitude);
     CameraPosition cameraPosition =
         CameraPosition(target: latLngPosition, zoom: 14);
-    // newGoogleMapController!.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+    newGoogleMapController!
+        .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
-    // String humanReadableAddress = await AssistantMethods.searchAddressForGeographicCoordinates(userCurrentPosition!, context);
+    // String humanReadableAddress =
+    //     await AssistantMethods.searchAddressForGeographicCoordinates(
+    //         driverCurrentPosition!, context);
     // print("this is your address = " + humanReadableAddress);
     await AssistantMethods.searchAddressForGeographicCoordinates(
         driverCurrentPosition!, context);
@@ -310,7 +315,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
                             Icons.phonelink_ring,
                             color: Colors.white,
                             size: 26,
-                          ))
+                          )),
               ],
             ))
       ],
