@@ -250,7 +250,10 @@ class _HomeTabPageState extends State<HomeTabPage> {
             newGoogleMapController = controller;
 
             //black theme
-            blackThemeGoogleMap();
+            if(MediaQuery.of(context).platformBrightness == Brightness.dark){
+                blackThemeGoogleMap();
+                appThemeBrightness = Brightness.dark;
+            }
 
             locateDriverPosition();
           },
@@ -261,7 +264,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
             ? Container(
                 height: MediaQuery.of(context).size.height,
                 width: double.infinity,
-                color: Colors.black87,
+                color: Colors.black54,
               )
             : Container(),
 
@@ -309,7 +312,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              // color: Colors.white,
                             ))
                         : const Icon(
                             Icons.phonelink_ring,

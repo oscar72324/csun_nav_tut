@@ -11,8 +11,14 @@ void main() async {
       child: MaterialApp(
         title: 'Shuttle Nav',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+            brightness: Brightness.light,
+            primarySwatch: Colors.red,
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            primarySwatch: Colors.red,
+          ),
+          themeMode: ThemeMode.system,
         home: const MySplashScreen(),
         debugShowCheckedModeBanner: false,
       ),
