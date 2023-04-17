@@ -320,8 +320,25 @@ class _HomeTabPageState extends State<HomeTabPage> {
                             size: 26,
                           )),
               ],
-            ))
+            )),
+            // emergency call button
+          Positioned(
+            bottom: 320,
+            left: 10,
+            child: FloatingActionButton(
+              backgroundColor: Colors.redAccent,
+              onPressed:() {
+                // call 911
+              },
+              child: const Icon(
+                Icons.contact_phone_rounded,
+                size: 35,
+                color: Colors.white,
+              ),
+            ),
+          ),
       ],
+      
     );
   }
 
